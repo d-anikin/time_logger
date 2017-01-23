@@ -42,12 +42,6 @@ class TimeLogger < ActiveRecord::Base
     if user.nil? or user.locked?
       return true
     end
-
-    issue = help.issue_from_id(self.issue_id)
-    if issue.nil? or !user.allowed_to?(:log_time, issue.project)
-      return true
-    end
-
     return false
   end
 

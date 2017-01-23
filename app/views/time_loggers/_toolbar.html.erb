@@ -1,5 +1,5 @@
 <div id="time-logger-toolbar">
-<% if global_allowed_to?(User.current, :log_time) %>
+<% if global_allowed_to?(User.current, :view_time_logger) %>
   <% time_logger = time_logger_for(User.current) %>
   <div class="time-logger-wrapper">
     <div class="timer">
@@ -11,7 +11,7 @@
         <% end %>
       </div>
       <% if !@project.nil? and
-            User.current.allowed_to?(:log_time, @project) and
+            User.current.allowed_to?(:view_time_logger, @project) and
             !(@issue.nil? || @issue.new_record? || (time_logger.present? && time_logger.issue_id == @issue.id))
       %>
 

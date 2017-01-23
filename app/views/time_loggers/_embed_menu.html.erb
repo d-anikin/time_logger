@@ -1,4 +1,4 @@
-<% if User.current.allowed_to?(:log_time, nil, :global => true) or User.current.allowed_to?(:view_others_time_loggers, nil, :global => true) %>
+<% if User.current.allowed_to?(:view_time_logger, nil, :global => true) or User.current.allowed_to?(:view_others_time_loggers, nil, :global => true) %>
     <span>
         <%= link_to l(:list_time_loggers),
             { :controller => '/time_loggers', :action => 'index' },
