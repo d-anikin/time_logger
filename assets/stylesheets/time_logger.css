@@ -57,7 +57,7 @@
 #settings form[action="/settings/plugin/time_logger"] > div + div { display: none } /* Hack to remove the div opened by redmine before rendering the plugin settings partial */
 
 .time-logger-wrapper {
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .timer {
@@ -75,7 +75,7 @@
 
 .timer-task {
     display: inline-block;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 .timer-time {
@@ -88,7 +88,7 @@
 }
 
 .timer-button, a.timer-button {
-    background: #47be00;
+    background: #3E5B76;
     border: none;
     color: #fff;
     cursor: pointer;

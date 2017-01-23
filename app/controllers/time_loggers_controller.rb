@@ -13,19 +13,17 @@ class TimeLoggersController < ApplicationController
 
   def start
     @time_logger = current
-    if @time_logger.nil?
-      @issue = Issue.find_by_id(params[:issue_id])
-      @time_logger = TimeLogger.new({ issue_id: @issue.id,
-                                      status_id: @issue.status_id })
+    @time_logger.stop unless @time_logger.nil?
 
-      if @time_logger.save
-        apply_status_transition(@issue) unless Setting.plugin_time_logger['status_transitions'] == nil
-        render_toolbar
-      else
-        flash[:error] = l(:start_time_logger_error)
-      end
+    @issue = Issue.find_by_id(params[:issue_id])
+    @time_logger = TimeLogger.new({ issue_id: @issue.id,
+                                    status_id: @issue.status_id })
+
+    if @time_logger.save
+      apply_status_transition(@issue) unless Setting.plugin_time_logger['status_transitions'] == nil
+      render_toolbar
     else
-      flash[:error] = l(:time_logger_already_running_error)
+      flash[:error] = l(:start_time_logger_error)
     end
   end
 
