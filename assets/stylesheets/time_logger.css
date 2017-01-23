@@ -55,3 +55,59 @@
 }
 
 #settings form[action="/settings/plugin/time_logger"] > div + div { display: none } /* Hack to remove the div opened by redmine before rendering the plugin settings partial */
+
+.time-logger-wrapper {
+    padding: 5px;
+}
+
+.timer {
+    background: #fff;
+    box-shadow: 0 1px 5px rgba(0,0,0,.23);
+    color: #404040;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 40px;
+    margin: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.timer-task {
+    display: inline-block;
+    padding: 0 20px;
+}
+
+.timer-time {
+    float: right;
+    line-height: 19px;
+    min-width: 108px;
+    padding: 0 18px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.timer-button, a.timer-button {
+    background: #47be00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    float: right;
+    font: inherit;
+    height: 40px;
+    outline: 0;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    text-align: center;
+    transition: background-color .2s ease-out;
+    width: 103px;
+}
+
+.timer-button a {
+
+}
+
+.timer-button.stop {
+    background: #454545;
+}

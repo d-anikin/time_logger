@@ -1,0 +1,42 @@
+<div id="time-logger-toolbar">
+<% if global_allowed_to?(User.current, :log_time) %>
+  <% time_logger = time_logger_for(User.current) %>
+  <div class="time-logger-wrapper">
+    <div class="timer">
+      <div class="timer-task">
+        <% if time_logger.present? %>
+          <%= link_to_issue(time_logger.issue) %>
+        <% else %>
+          <%= l('no_time_logger') %>
+        <% end %>
+      </div>
+      <% if !@project.nil? and User.current.allowed_to?(:log_time, @project) and !(@issue.nil? || @issue.new_record?) %>
+        <%= link_to l(:start_time_logger) + ' #' + @issue.id.to_s + ' ',
+                    { controller: '/time_loggers',
+                      action: 'start',
+                      issue_id: @issue.try(:id) },
+                    { class: 'timer-button',
+                      remote: true,
+                      'data-timer' => true }
+        %>
+      <% end %>
+
+      <% if time_logger.present? %>
+        <%= link_to l(:stop_time_logger),
+                    { controller: '/time_loggers',
+                      action: 'stop',
+                      issue_id: @issue.try(:id),
+                      project_id: @project.try(:id) },
+                    { class: 'timer-button stop',
+                      remote: true,
+                      'data-timer' => true }
+        %>
+        <div class="timer-time">
+          <small><%= time_logger.issue.status.name %></small><br>
+          <%= time_logger.time_spent_to_s %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
