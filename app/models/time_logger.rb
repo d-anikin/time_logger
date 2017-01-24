@@ -51,7 +51,8 @@ class TimeLogger < ActiveRecord::Base
                         user: user,
                         spent_on: User.current.today,
                         hours: hours_spent.round(2),
-                        comments: status.name)
+                        comments: status.name,
+                        activity: TimeEntryActivity.find_by_name(status.name) || TimeEntryActivity.default)
     end
     destroy
   end
@@ -76,7 +77,8 @@ class TimeLogger < ActiveRecord::Base
                       user: user,
                       spent_on: User.current.today,
                       hours: hours_spent.round(2),
-                      comments: status_name)
+                      comments: status_name,
+                      activity: TimeEntryActivity.find_by_name(status_name) || TimeEntryActivity.default)
     self.started_on = Time.now
   end
 end
