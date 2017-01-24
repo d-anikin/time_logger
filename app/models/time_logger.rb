@@ -24,6 +24,7 @@ class TimeLogger < ActiveRecord::Base
     self.started_on = Time.now
     self.time_spent = 0.0
     self.paused = false
+    self.ping_at = Time.now
   end
 
   def hours_spent
@@ -38,11 +39,9 @@ class TimeLogger < ActiveRecord::Base
   end
 
   def zombie?
-    user = help.user_from_id(self.user_id)
-    if user.nil? or user.locked?
-      return true
-    end
-    return false
+    user = help.user_from_id(user_id)
+    return true if user.nil? || user.locked?
+    ping_at.nil? || Time.now - ping_at >= 10.minutes
   end
 
   def stop

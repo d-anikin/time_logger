@@ -55,6 +55,11 @@ class TimeLoggersController < ApplicationController
   def render_toolbar
     @project = Project.find_by_id(params[:project_id])
     @issue = Issue.find_by_id(params[:issue_id])
+    @time_logger ||= current
+    Rails.logger.debug("====================================")
+    Rails.logger.debug(@time_logger.inspect)
+    Rails.logger.debug("====================================")
+    @time_logger.update_attribute(:ping_at, Time.now) if @time_logger && !@time_logger.destroyed?
     render partial: 'toolbar'
   end
 
