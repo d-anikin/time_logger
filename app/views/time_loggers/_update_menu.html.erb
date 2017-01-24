@@ -17,11 +17,32 @@
         });
       }
 
+      function updateIssues() {
+        $.ajax({
+          url:"<%=url_for :controller => '/time_loggers',:action => 'issues' %>",
+          cache:false,
+          success: function(data){
+            console.log(data);
+            $('.time-logger-active').removeClass('time-logger-active');
+            $.each(data, function(idx, issue_id) {
+              console.log(issue_id);
+              $('#issue-' + issue_id).addClass('time-logger-active');
+            })
+          }
+        });
+      }
+
+      function update() {
+        updateStatus();
+        updateIssues();
+      }
+
       jQuery(document).ready(function($){
         $('#main').prepend('<%= escape_javascript(render :partial => 'time_loggers/toolbar') %>');
         $('#time-logger-menu').replaceWith('<span id=\"time-logger-menu\"><%= escape_javascript(render :partial => 'time_loggers/embed_menu') %></span>');
-        $(document).on('click', '[data-time-logger-refresh]', updateStatus)
-        setInterval(updateStatus, 60000);
+        $(document).on('click', '[data-time-logger-refresh]', update)
+        setInterval(update, 60000);
+        updateIssues();
       });
     });
   </script>

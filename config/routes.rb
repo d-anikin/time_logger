@@ -1,5 +1,6 @@
 if Rails::VERSION::MAJOR >= 4
   Rails.application.routes.draw do
+    match 'time_loggers/issues', :to => 'time_loggers#issues', via: [:get, :post]
     match 'time_loggers/stop', :to => 'time_loggers#stop', via: [:get, :post]
     match 'time_loggers/start', :to => 'time_loggers#start', via: [:get, :post]
     match 'time_loggers/render_toolbar', :to => 'time_loggers#render_toolbar', via: [:get, :post]
@@ -11,6 +12,7 @@ if Rails::VERSION::MAJOR >= 4
   end
 elsif Rails::VERSION::MAJOR >= 3
   Rails.application.routes.draw do
+    match 'time_loggers/issues' , :to => 'time_loggers#issues'
     match 'time_loggers/stop'   , :to => 'time_loggers#stop'
     match 'time_loggers/start'  , :to => 'time_loggers#start'
     match 'time_loggers/render_toolbar', :to => 'time_loggers#render_toolbar'

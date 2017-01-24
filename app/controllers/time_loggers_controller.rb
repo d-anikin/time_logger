@@ -11,6 +11,10 @@ class TimeLoggersController < ApplicationController
     end
   end
 
+  def issues
+    render json: TimeLogger.pluck(:issue_id)
+  end
+
   def start
     @time_logger = current
     @time_logger.stop unless @time_logger.nil?
