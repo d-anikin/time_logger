@@ -22,10 +22,8 @@
           url:"<%=url_for :controller => '/time_loggers',:action => 'issues' %>",
           cache:false,
           success: function(data){
-            console.log(data);
             $('.time-logger-active').removeClass('time-logger-active');
             $.each(data, function(idx, issue_id) {
-              console.log(issue_id);
               $('#issue-' + issue_id).addClass('time-logger-active');
             })
           }
