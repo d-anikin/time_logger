@@ -2,6 +2,7 @@
 class TimeLoggerHooks < Redmine::Hook::ViewListener
   render_on :view_layouts_base_body_bottom, :partial => 'time_loggers/update_menu'
   render_on :view_issues_context_menu_start, :partial => 'time_loggers/update_context'
+  render_on :view_issues_show_details_bottom, :partial => 'time_loggers/view_issues_show_details_bottom'
 
   def view_layouts_base_html_head(context = {})
     css = stylesheet_link_tag 'time_logger.css', :plugin => 'time_logger'
